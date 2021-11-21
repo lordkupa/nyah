@@ -2319,7 +2319,7 @@ lbody {
   top: 80%;
   left: 72%;
   width: 300px;
-  max-height: 40%;
+  height: 330px;
   background-color: #fff;
   border: 5px solid #3571B5;
   z-index: 10;
