@@ -2319,9 +2319,9 @@ button,
 .pop-layer {
   display: none;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 410px;
+  top: 70%;
+  left: 70%;
+  width: 210px;
   height: auto;
   background-color: #fff;
   border: 5px solid #3571B5;
