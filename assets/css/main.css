@@ -2318,7 +2318,7 @@ lbody {
   position: absolute;
   top: 80%;
   left: 72%;
-  max-width: 100%;
+  width: 300px;
   max-height: 40%;
   background-color: #fff;
   border: 5px solid #3571B5;
