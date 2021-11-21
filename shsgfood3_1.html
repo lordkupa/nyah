@@ -27,7 +27,7 @@
 										<div>
 											<p><!--<a href="#layer1" class="btn-example"><center><img src="images/yysb.png" style="width:auto; height:auto;" alt="" /></center></a> <br>-->
 
-												<center>
+											<!--	<center>
 												<img src="images/yysb.png"  style="max-width: 100%; height: auto;"  border="0" usemap="#yysbmap"></center>
 												<map name="yysbmap">
     <area shape="rect" coords="2,5,379,137" href="#layer1" class="btn-example"/>
@@ -39,7 +39,29 @@
     <area shape="rect" coords="287,259,424,728" href="#layer5" class="btn-example"/>
     <area shape="rect" coords="293,727,380,796" href="#layer5" class="btn-example"/>
 
+</map>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> <!-- JQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script> 
+ 
+<!-- 이미지맵 시작 -->
+<center><img src="images/yysb.png"  style="max-width: 100%; height: auto;" usemap="#yysbmap" /></center>
+<map id="yysbmap" name="yysbmap">
+    <area shape="rect" coords="2,5,379,137" href="#layer1" class="btn-example"/>
+    <area shape="rect" coords="5,154,380,216" href="#layer2" class="btn-example"/>
+    <area shape="rect" coords="10,266,263,462" href="#layer3" class="btn-example"/>
+    <area shape="rect" coords="6,513,272,547" href="#layer4" class="btn-example"/>
+    <area shape="rect" coords="7,642,265,793" href="#layer4" class="btn-example"/>
+    <area shape="rect" coords="151,219,378,257" href="#layer5" class="btn-example"/>
+    <area shape="rect" coords="287,259,424,728" href="#layer5" class="btn-example"/>
+    <area shape="rect" coords="293,727,380,796" href="#layer5" class="btn-example"/>
 </map>
+<!-- 이미지맵 끝 -->
+ 
+<script type="text/javascript">
+    // rwdImageMaps로 이미지맵 동적 할당하도록 설정
+    $('img[usemap]').rwdImageMaps();
+</script>
+
 <!--지도영역
 <img src="https://i.imgur.com/NUjTqSd.gif" width="389" height="26" border="0" usemap="#Search_Engine">
 <map name="Search_Engine">
