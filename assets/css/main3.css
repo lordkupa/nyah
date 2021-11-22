@@ -1103,7 +1103,7 @@ input, select, textarea {
 		transition: opacity 0.75s ease, width 0.75s ease;
 		position: absolute;
 		top: 0;
-		width: calc(100% - 22.5em);
+		width: 100%;
 		height: 100%;
 		left: 0;
 	}
@@ -1258,7 +1258,7 @@ input, select, textarea {
 			}
 
 		body.fullscreen #viewer {
-			width: 100%;
+			width: device-width;
 		}
 
 			body.fullscreen #viewer .inner .toggle {
@@ -1273,7 +1273,7 @@ input, select, textarea {
 			opacity: 0;
 		}
 
-		@media screen and (max-width: 1280px) {
+		@media screen and (max-width: 100%) {
 
 			#viewer {
 				width: calc(100% - 19em);
@@ -1281,7 +1281,7 @@ input, select, textarea {
 
 		}
 
-		@media screen and (max-width: 980px) {
+		@media screen and (max-width: 100%) {
 
 			#viewer {
 				width: 100%;
