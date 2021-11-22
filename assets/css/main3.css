@@ -1258,7 +1258,7 @@ input, select, textarea {
 			}
 
 		body.fullscreen #viewer {
-			width: 100%;
+			width: 50%;
 		}
 
 			body.fullscreen #viewer .inner .toggle {
