@@ -1376,7 +1376,7 @@ ul.contact {
       font-family: 'Font Awesome 5 Free';
       font-weight: 400; }
     ul.contact li:before {
-      color: #f56a6a;
+      color: #01615ec7;
       display: inline-block;
       font-size: 1.5em;
       height: 1.125em;
@@ -1561,13 +1561,13 @@ button,
     input[type="button"].primary:hover,
     button.primary:hover,
     .button.primary:hover {
-      background-color: #f67878; }
+      background-color: #01615ec7; }
     input[type="submit"].primary:active,
     input[type="reset"].primary:active,
     input[type="button"].primary:active,
     button.primary:active,
     .button.primary:active {
-      background-color: #f45c5c; }
+      background-color: #01615ec7; }
    /*blue color button추가*/
       button.primary1,
       .button.primary1 {
@@ -2210,7 +2210,7 @@ button,
   #footer .copyright a {
     color: inherit; }
 
-/* Menu */
+/* Menu 색상변경해 */
 #menu ul {
   -moz-user-select: none;
   -webkit-user-select: none;
