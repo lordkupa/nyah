@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>카드</title>
+    <style>
+        input[type='button'] {
+            width: 100%;
+            font-size: 20px;
+            background-color: black;
+            color: white;
+        }
+
+        .img-div {
+            width: 550px;
+            margin: 0 auto;
+        }
+
+        #btn-div {
+            width: 150px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img-div">
+        <img id="img1_1" class="cards" src="back.jpg" width="100px" height="150px" alt="">
+        <img id="img1_2" class="cards" src="back.jpg" width="100px" height="150px" alt="">
+        <img id="img1_3" class="cards" src="back.jpg" width="100px" height="150px" alt="">
+        <img id="img1_4" class="cards" src="back.jpg" width="100px" height="150px" alt="">
+        <img id="img1_5" class="cards" src="back.jpg" width="100px" height="150px" alt="">
+    </div>
+    <div class="img-div">
+        <img id="img2_1" class="cards" src="back.jpg" width="100px" height="150px" alt="">
+        <img id="img2_2" class="cards" src="back.jpg" width="100px" height="150px" alt="">
+        <img id="img2_3" class="cards" src="back.jpg" width="100px" height="150px" alt="">
+        <img id="img2_4" class="cards" src="back.jpg" width="100px" height="150px" alt="">
+        <img id="img2_5" class="cards" src="back.jpg" width="100px" height="150px" alt="">
+    </div>
+    <div id="btn-div">
+        <input id="shuffle-btn" type="button" value="SHUFFLE" onclick="shuffleCard(cardClons)">
+    </div>
+</body>
+
+<script>
+
+    var imgSrcs = ["A_1.jpg",
+        "2_1.jpg", "3_1.jpg",
+        "4_1.jpg", "5_1.jpg"
+    ];
+
+    var backSrc = "back.jpg";
+    var cards = document.getElementsByClassName("cards");
+    var pairCount = 0;
+    var pairCheck = 0;
+    var firstCard;
+    
+
+    //1.1 카드 객체를 생성한다.
+    var Card = function (card, src) {
+        this.card = card;
+        this.src = src;
+        this.status = "back";
+    }
+
+    //1.2 카드 배열을 생성 후 
+    var cardClons = [];
+
+    //1.2 카드 객체 배열 생성 후 각각의 카드를 만들어 준다. 
+    for (let i = 0; i < cards.length; i++) {
+        cardClons.push(new Card(cards[i], imgSrcs[i % imgSrcs.length]))
+    }
+
+    
+    //2. 게임시작
+    for (let i = 0; i < cardClons.length; i++) {
+
+        cards[i].onclick = function () {
+            //뒤집힌 상태에서 클릭하면 앞면으로 변함
+            cards[i].src = cardClons[i].src;
+                pairCheck++;
+
+            //한장만 뒤집어져 있는 상태라면 해당카드를 저장
+            if (pairCheck == 1) {
+                firstCard = cards[i];
+                console.log(firstCard);
+            }
+            console.log(pairCheck);
+            //두장 뒤집혀져 있다면 카드 비교 시작
+            if (pairCheck == 2) {
+                //2.1 클릭 했을 때 2장의 카드가 같으면 pairCount 증가 후 pairCheck 다시 0으로
+
+                if (cards[i].src == firstCard.src) {
+                    pairCount++;
+                    pairCheck = 0;
+                    console.log(pairCount);
+                }
+                //2.2 다르면 다시 전 상태(뒷 그림)으로 1초뒤 돌아가야한다.
+                else {
+                    pairCheck = 0;
+                    setTimeout(function () {
+                        cards[i].src = backSrc;
+                        firstCard.src = backSrc;
+                    }, 1000);
+                   
+                }
+                console.log(firstCard);
+                console.log(cards[i].src);
+            }
+
+            if (pairCount == 5) {
+                alert("모두 맞췄습니다!!");
+                for (let i = 0; i < cards.length; i++) {
+                    cards[i].src = backSrc;
+                    pairCount = 0;
+                    pairCheck = 0;
+                    shuffleCard(cardClons);
+                };
+            };
+
+        };
+
+    };
+
+    //섞는 함수 
+    function shuffleCard(cardClons) {
+
+        for (let i = 0; i < cardClons.length; i++) {
+            let index = Math.floor(Math.random() * cardClons.length);
+            var tmp = cardClons[i];
+            cardClons[i] = cardClons[index];
+            cardClons[index] = tmp;
+        }
+        console.log(cardClons);
+    }
+
+    //슬립 함수
+    function pause(numberMillis) {
+        var now = new Date();
+        var exitTime = now.getTime() + numberMillis;
+
+        while (true) {
+            now = new Date();
+            if (now.getTime() > exitTime)
+                return;
+        }
+    }
+
+    //ToDo 버그 수정, 여러버그있음 카드 두번클릭가능 한번에 3개씩 클릭하면 클릭되는거
+    //간단할것같음 처음 if문 주고 플래그새워서 참인동안만 카드 클리가능하게 
+    //카드 스태이터스를 이용해야함, 근데 내가 객체를 만든만큼 그걸 이용해서 해보자
+    
+</script>
+</html>
