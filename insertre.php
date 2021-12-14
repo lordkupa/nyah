@@ -30,7 +30,6 @@
     $sql = "INSERT INTO restman( name_data, CreateTime, goal1_data, goal2_data ) VALUES ('$name_data', now(), '$goal1_data', '$goal2_data');";
 
     mysqli_query($con, $sql);
-    mysqli_close($con);
     echo '<h1>입력이 완료되었습니다.</h1>';
 ?>
       <ul class="actions stacked">

@@ -17,13 +17,67 @@
 						<div class="inner" >
 							<header id="header">
 								<span class="align-right"><strong>심부전 리빙랩 제공</strong></Align>
-							<p><span class="align-right"><img src="images/pic02.jpg" alt="" />	
+							
 						</header>
-					
-						
+</div>
 
-							<!-- Banner -->
-								<section id="banner">
+						
+<?php
+    $db_host        =   "localhost:3307";
+    $db_user        =   "root";
+    $db_password    =   "!Ab2810034";
+    $db_name        =   "test";
+    $name_data      =   $_POST['data'];
+
+    $con = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+    
+    if (mysqli_connect_error($con) )
+    {
+        $errormsg = mysqli_connect_error();
+        echo ("<SCRIPT LANGUAGE='javascript'> alert('에러 : $errormsg');</SCRIPT>");
+        exit();
+    }
+
+    $sqlSelect = "SELECT name_data, goal1_data, goal2_data FROM restman WHERE name_data = '$name_data' ORDER BY CreateTime;";
+
+    $result = mysqli_query($con, $sqlSelect);
+    
+    $data = array();
+    $data[0] = array('index', $name_data);
+
+    $index = 0;
+
+    while($row = mysqli_fetch_array($result))
+    {
+        $index++;
+        
+        $output = $row['goal1_data'];
+        $data[(int)$index] = array( $index.'주차', (int)$output);
+    }
+
+    mysqli_close($con); 
+
+    $options = array(
+       'title' => '건강한 하루가 되셨나요?',
+       'width' => 350, 'height' => 450, 'legend' => 'none'
+
+    );
+?>
+
+<script src="//www.google.com/jsapi"></script>
+<script>
+var data = <?= json_encode($data) ?>;
+var options = <?= json_encode($options) ?>;
+google.load('visualization', '1.0', {'packages':['corechart']});
+google.setOnLoadCallback(function() {
+  var chart = new google.visualization.LineChart(document.querySelector('#chart_div'));
+  chart.draw(google.visualization.arrayToDataTable(data), options);
+});
+</script>
+<div id="chart_div" Align="left"></div>
+<div class="inner" >
+					<!-- Banner -->
+                    <section id="banner">
 									<div class="content">
 										<header>
 											<p></p>
@@ -32,8 +86,6 @@
 										<ul class="actions stacked">
 											<li><a href="content[age.html" class="button primary1 fit">심부전 길라잡이</a></li>
 											<li><a href="shsgmenu.html" class="button primary1 fit">생활 속 요인관리</a></li>
-											<li><a href="form.html" class="button primary1 fit">목표 입력하기</a></li>
-											<li><a href="cha1.html" class="button primary1 fit">목표 조회하기</a></li>
 											<li><a href="game.html" class="button primary1 fit">증상 찾기 게임</a></li>
 											</ul>
 											<p>본 홈페이지는 심부전 자가관리를 위해 제작되었습니다. 모든 페이지는 모바일 환경에 최적화 되었습니다.</p>
@@ -45,8 +97,6 @@
 										<img src="images/newtitle.jpg" style="max-width: 100%; height: auto;"/><br>
 									
 								</section>
-
-							
 							
 
 						</div>

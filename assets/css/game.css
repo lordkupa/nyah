@@ -1,7 +1,7 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
 
-html, body, div, span, applet, object,
+html, body, div, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
 code, del, dfn, em, img, ins, kbd, q, s, samp,
@@ -16,8 +16,7 @@ section, summary, time, mark, audio, video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
-  vertical-align: baseline; }
+  font: inherit;}
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -86,7 +85,7 @@ body {
     transition: none !important; }
 
 /* Type */
-body, input, select, textarea {
+body, input, select {
   color: #7f888f;
   font-family: "Open Sans", sans-serif;
   font-size: 13pt;
@@ -1014,7 +1013,6 @@ label {
   margin: 0 0 1em 0; }
 
 input[type="text"],
-input[type="number"],
 input[type="password"],
 input[type="email"],
 input[type="tel"],
@@ -1037,7 +1035,6 @@ textarea {
   text-decoration: none;
   width: 100%; }
   input[type="text"]:invalid,
-  input[type="number"]:invalid,
   input[type="password"]:invalid,
   input[type="email"]:invalid,
   input[type="tel"]:invalid,
@@ -1047,7 +1044,6 @@ textarea {
   textarea:invalid {
     box-shadow: none; }
   input[type="text"]:focus,
-  input[type="number"]:focus,
   input[type="password"]:focus,
   input[type="email"]:focus,
   input[type="tel"]:focus,
@@ -1075,7 +1071,6 @@ select {
     display: none; }
 
 input[type="text"],
-input[type="number"],
 input[type="password"],
 input[type="email"],
 input[type="tel"],
@@ -1437,47 +1432,8 @@ ul.pagination {
     ul.pagination li:first-child {
       padding-right: 0; } }
 
-/* Table */
-.table-wrapper {
-  -webkit-overflow-scrolling: touch;
-  overflow-x: auto; }
 
-table {
-  margin: 0 0 2em 0;
-  width: 100%; }
-  table tbody tr {
-    border: solid 1px rgba(210, 215, 217, 0.75);
-    border-left: 0;
-    border-right: 0; }
-    table tbody tr:nth-child(2n + 1) {
-      background-color: rgba(230, 235, 237, 0.25); }
-  table td {
-    padding: 0.75em 0.75em; }
-  table th {
-    color: #3d4449;
-    font-size: 0.9em;
-    font-weight: 600;
-    padding: 0 0.75em 0.75em 0.75em;
-    text-align: left; }
-  table thead {
-    border-bottom: solid 2px rgba(210, 215, 217, 0.75); }
-  table tfoot {
-    border-top: solid 2px rgba(210, 215, 217, 0.75); }
-  table.alt {
-    border-collapse: separate; }
-    table.alt tbody tr td {
-      border: solid 1px rgba(210, 215, 217, 0.75);
-      border-left-width: 0;
-      border-top-width: 0; }
-      table.alt tbody tr td:first-child {
-        border-left-width: 1px; }
-    table.alt tbody tr:first-child td {
-      border-top-width: 1px; }
-    table.alt thead {
-      border-bottom: 0; }
-    table.alt tfoot {
-      border-top: 0; }
-
+/* Button */
 /* Button */
 input[type="submit"],
 input[type="reset"],
@@ -1496,11 +1452,11 @@ button,
   border-radius: 0.375em;
   border: 0;
   box-shadow: inset 0 0 0 2px #01615ec7;
-  color: #000000 !important;
+  color: #ffffff !important;
   cursor: pointer;
   display: inline-block;
   font-family: "Roboto Slab", serif;
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: 700;
   height: 3.5em;
   letter-spacing: 0.075em;
@@ -1568,7 +1524,6 @@ button,
     button.primary:active,
     .button.primary:active {
       background-color: #01615ec7; }
-   /*blue color button추가*/
       button.primary1,
       .button.primary1 {
         background-color: #01615ec7;
