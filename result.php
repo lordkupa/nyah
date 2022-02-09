@@ -7,15 +7,13 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 <?php
-   
+
     $db_host        =   "localhost:3307";
     $db_user        =   "root";
     $db_password    =   "!Ab2810034";
     $db_name        =   "test";
     $name_data      =   $_POST['data'];
-    $goal1_data      =   $_POST['goal1'];
-    $goal2_data      =   $_POST['goal2'];
-    $salt1      =   $_POST['salt1'];
+
 
     $con = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
@@ -25,26 +23,44 @@
         echo ("<SCRIPT LANGUAGE='javascript'> alert('에러 : $errormsg');</SCRIPT>");
         exit();
     }
-    
 
-    $sqlInsert = "INSERT INTO restman( name_data, CreateTime, goal1_data, goal2_data, goal3_data, goal4_data, salt1, salt2, ID ) VALUES ('$name_data', now(), $goal1_data, $goal2_data, -1, -1, $salt1, -1, UNHEX(REPLACE(UUID(),'-','')));";
+    $sqlSelect = "SELECT name_data, goal1_data, goal2_data, salt1 FROM restman WHERE name_data = '$name_data' ORDER BY CreateTime DESC LIMIT 1;";
 
-    mysqli_query($con, $sqlInsert);
-//    echo '<h1>입력이 완료되었습니다.</h1>';
-$name = $row['name_data'];
-$value1 = $row['goal1_data'];
-$value2 = $row['goal2_data'];
-$value3 = $row['salt1'];
-$string = '입력이 완료되었습니다. 심부전 길라잡이에서 여러분의 건강한 한주를 응원합니다! ';
-//$string = $name.'님 이번 주 목표는 운동 목표는 '.$value1.'회 '.$value2.'분 이었습니다';   
-echo ("<SCRIPT LANGUAGE='javascript'> alert('$string');</SCRIPT>");
+    $result = mysqli_query($con, $sqlSelect);
+    $row    = mysqli_fetch_array($result);
+        
+    if($row == null)
+    {
+        echo '검색 결과가 존재 하지 않습니다';
+    }
+    else
+    {
+       // echo ("<SCRIPT LANGUAGE='javascript'> alert('in');</SCRIPT>");
+
+        $name = $row['name_data'];
+        $value1 = $row['goal1_data'];
+        $value2 = $row['goal2_data'];
+        $salt1 = $row['salt1'];
+
+        $string = $name.'님 이번 주 운동 목표는 '.$value1.'회 '.$value2.'분이었고 소급 섭취를 위한 노력은 '.$salt1.'회 이었습니다';
+
+        echo ("<SCRIPT LANGUAGE='javascript'> alert('$string');</SCRIPT>");
+
+       // echo '<h1>';
+       // echo $string;
+       // echo '</h1>';
+        
+    }
+
+    mysqli_close($con);
 
 ?>
 <body class="is-preload">
 
+   
 <!-- Wrapper -->
     <div id="wrapper">
-        
+    
 
         <!-- Main -->
             <div id="main">
@@ -54,7 +70,16 @@ echo ("<SCRIPT LANGUAGE='javascript'> alert('$string');</SCRIPT>");
                     <p><span class="align-right"><img src="images/pic02.jpg" alt="" />	
                 </header>
             
-                
+                <form action="resultinsert.php" method="Post">
+                <br>이번 한주의 결과에 대해 입력해주세요!<br>
+      <input type="text" name="data" value = <?echo $name ?> placeholder="이름을 입력해 주세요!" readonly><br>
+      <input type="number" min="0" name="goal3" placeholder="숫자만 입력해 주세요!" required>예) 이번주는 산책을 '3'회 하였다.<br>
+      <input type="number" min="0" name="goal4" placeholder="숫자만 입력해 주세요!" required>예) 이번주는 산책을 '5'분 하였다.<br> 
+      <input type="number" min="0" name="salt2" placeholder="숫자만 입력해 주세요!" required>예) 이번주는 소급 섭취를 줄이기 위해 '5'회 노력하였다.<br><br>
+
+      <button>보내기</button>
+    </form>
+
 
                     <!-- Banner -->
                         <section id="banner">

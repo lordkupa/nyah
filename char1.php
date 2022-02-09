@@ -64,7 +64,7 @@
     $result = mysqli_query($con, $sqlSelect);
     
     $data = array();
-    $data[0] = array('index', $name_data);
+    $data[0] = array($name_data, '운동횟수', '운동시간');
 
     $index = 0;
 
@@ -72,14 +72,16 @@
     {
         $index++;
         
-        $output = $row['goal1_data'];
-        $data[(int)$index] = array( $index.'주차', (int)$output);
+        $output_1	= $row['goal1_data'];
+		$output_2	= $row['goal2_data'];
+
+        $data[(int)$index] = array( $index.'주차', (int)$output_1, (int)$output_2);
     }
 
     mysqli_close($con); 
 
     $options = array(
-       'title' => '건강한 하루가 되셨나요?',
+       'title' => $name_data.'님 건강한 하루가 되셨나요?',
        'width' => '100%', 'height' => 400, 'legend' => 'none'
 
     );

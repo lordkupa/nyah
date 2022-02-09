@@ -13,9 +13,9 @@
     $db_password    =   "!Ab2810034";
     $db_name        =   "test";
     $name_data      =   $_POST['data'];
-    $goal1_data      =   $_POST['goal1'];
-    $goal2_data      =   $_POST['goal2'];
-    $salt1      =   $_POST['salt1'];
+    $goal3_data      =   $_POST['goal3'];
+    $goal4_data      =   $_POST['goal4'];
+    $salt2      =   $_POST['salt2'];
 
     $con = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
@@ -27,18 +27,12 @@
     }
     
 
-    $sqlInsert = "INSERT INTO restman( name_data, CreateTime, goal1_data, goal2_data, goal3_data, goal4_data, salt1, salt2, ID ) VALUES ('$name_data', now(), $goal1_data, $goal2_data, -1, -1, $salt1, -1, UNHEX(REPLACE(UUID(),'-','')));";
+    $sqlInsert = "INSERT INTO restman( name_data, CreateTime, goal1_data, goal2_data, goal3_data, goal4_data, salt1, salt2, ID ) VALUES ('$name_data', now(), 0, 0, $goal3_data, $goal4_data, 0, $salt2, UNHEX(REPLACE(UUID(),'-','')));";
 
     mysqli_query($con, $sqlInsert);
-//    echo '<h1>입력이 완료되었습니다.</h1>';
-$name = $row['name_data'];
-$value1 = $row['goal1_data'];
-$value2 = $row['goal2_data'];
-$value3 = $row['salt1'];
-$string = '입력이 완료되었습니다. 심부전 길라잡이에서 여러분의 건강한 한주를 응원합니다! ';
-//$string = $name.'님 이번 주 목표는 운동 목표는 '.$value1.'회 '.$value2.'분 이었습니다';   
+    $string = '입력이 완료되었습니다. 건강한 한 주 보내신것에 대해 감사드립니다.';
 echo ("<SCRIPT LANGUAGE='javascript'> alert('$string');</SCRIPT>");
-
+//    echo '<h1>입력이 완료되었습니다.</h1>';
 ?>
 <body class="is-preload">
 

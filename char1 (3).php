@@ -17,13 +17,91 @@
 						<div class="inner" >
 							<header id="header">
 								<span class="align-right"><strong>심부전 리빙랩 제공</strong></Align>
-							<p><span class="align-right"><img src="images/pic02.jpg" alt="" />	
+							
 						</header>
-					
-						
+</div>
 
-							<!-- Banner -->
-								<section id="banner">
+<style type="text/css">
+.chart_div {
+  display: flex; 
+}
+.chart_div > div {
+  width: 50%;
+}
+.chart-info {
+  padding:0 0 0 45px;
+}
+
+@media screen and (max-width: 500px) {
+  .chart_div {
+    display: block;
+  }
+  .chart_div > div {
+    width: auto;
+  }
+}
+</style>			
+
+
+<?php
+    $db_host        =   "localhost:3307";
+    $db_user        =   "root";
+    $db_password    =   "!Ab2810034";
+    $db_name        =   "test";
+    $name_data      =   $_POST['data'];
+
+    $con = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+    
+    if (mysqli_connect_error($con) )
+    {
+        $errormsg = mysqli_connect_error();
+        echo ("<SCRIPT LANGUAGE='javascript'> alert('에러 : $errormsg');</SCRIPT>");
+        exit();
+    }
+
+    $sqlSelect = "SELECT name_data, goal3_data, goal4_data, salt2 FROM restman WHERE name_data = '$name_data' ORDER BY CreateTime;";
+
+    $result = mysqli_query($con, $sqlSelect);
+    
+    $data = array();
+    $data[0] = array($name_data, '운동횟수', '운동시간', '저염식');
+
+    $index = 0;
+
+    while($row = mysqli_fetch_array($result))
+    {
+        $index++;
+        
+        $output_1	= $row['goal3_data'];
+		$output_2	= $row['goal4_data'];
+		$output_3	= $row['salt2'];
+
+        $data[(int)$index] = array( $index.'주차', (int)$output_1, (int)$output_2, (int)$output_3);
+    }
+
+    mysqli_close($con); 
+
+    $options = array(
+       'title' => $name_data.'님 건강한 한 주가 되셨나요?',
+       'width' => '100%', 'height' => 400, 'legend' => 'top'
+
+    );
+?>
+
+<script src="//www.google.com/jsapi"></script>
+<script>
+var data = <?= json_encode($data) ?>;
+var options = <?= json_encode($options) ?>;
+google.load('visualization', '1.0', {'packages':['columnchart']});
+google.setOnLoadCallback(function() {
+  var chart = new google.visualization.LineChart(document.querySelector('#chart_div'));
+  chart.draw(google.visualization.arrayToDataTable(data), options);
+});
+</script>
+<div id="chart_div"></div>
+<div class="inner" >
+					<!-- Banner -->
+                    <section id="banner">
 									<div class="content">
 										<header>
 											<p></p>
@@ -32,22 +110,17 @@
 										<ul class="actions stacked">
 											<li><a href="content[age.html" class="button primary1 fit">심부전 길라잡이</a></li>
 											<li><a href="shsgmenu.html" class="button primary1 fit">생활 속 요인관리</a></li>
-											<li><a href="form.html" class="button primary1 fit">목표 입력하기</a></li>
-											<li><a href="result.html" class="button primary1 fit">결과 입력하기</a></li>
-											<li><a href="cha1.html" class="button primary1 fit">목표 조회하기</a></li>
 											<li><a href="game.html" class="button primary1 fit">증상 찾기 게임</a></li>
 											</ul>
 											<p>본 홈페이지는 심부전 자가관리를 위해 제작되었습니다. 모든 페이지는 모바일 환경에 최적화 되었습니다.</p>
 											<a href="http://pf.kakao.com/_WeSub/chat"><center><img src="images/kaklogo.png" style="max-width: 10%; height: auto;"></center></a>	<br><br>
 											<center><img src="images/sclogo.jpg" style="max-width: 70%; height: auto;"></center>
 									</div>
-									
+								
 
 										<img src="images/newtitle.jpg" style="max-width: 100%; height: auto;"/><br>
 									
 								</section>
-
-							
 							
 
 						</div>
